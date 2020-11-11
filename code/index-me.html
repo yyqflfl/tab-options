@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+        
+        .red,
+        .orange,
+        .yellow {
+            box-sizing: border-box;
+            width: 100px;
+            height: 50px;
+            border: 1px solid black;
+            float: left;
+        }
+        
+        .show {
+            clear: both;
+            margin-top: 50px;
+            width: 300px;
+            height: 200px;
+            background: red;
+        }
+        
+        .redB {
+            background: red;
+        }
+        
+        .yellowB {
+            background: yellow;
+        }
+        
+        .orangeB {
+            background: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div class="red" v-bind:class='{redB}' v-on:click='changeR' v-cloak>红</div>
+        <div class="orange" v-bind:class='{orangeB}' v-on:click='changeO' v-cloak>橙</div>
+        <div class="yellow" v-bind:class='{yellowB}' v-on:click='changeY' v-cloak>黄</div>
+        <div class="show" v-bind:class='bg' v-cloak></div>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                redB: true,
+                orangeB: false,
+                yellowB: false,
+                bg: {
+                    redB: true,
+                    orangeB: false,
+                    yellowB: false
+                }
+            },
+            methods: {
+                changeR: function() {
+                    this.orangeB = false;
+                    this.yellowB = false;
+                    this.redB = true;
+                    var bgC = this.bg;
+                    bgC.redB = true;
+                    bgC.orangeB = false;
+                    bgC.yellowB = false;
+                },
+                changeO: function() {
+                    this.redB = false;
+                    this.yellowB = false;
+                    this.orangeB = true;
+                    var bgC = this.bg;
+                    bgC.redB = false;
+                    bgC.orangeB = true;
+                    bgC.yellowB = false;
+                },
+                changeY: function() {
+                    this.redB = false;
+                    this.orangeB = false;
+                    this.yellowB = true
+                    var bgC = this.bg;
+                    bgC.redB = false;
+                    bgC.orangeB = false;
+                    bgC.yellowB = true;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

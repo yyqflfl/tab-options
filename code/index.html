@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+        
+        ul {
+            /* 清除浮动 */
+            /* overflow: hidden; */
+            /* 清除浮动 */
+            float: left;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: 1px solid black;
+            border-right: none;
+        }
+        
+        ul li {
+            box-sizing: border-box;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            float: left;
+            border-right: 1px solid black;
+        }
+        
+        .bg {
+            background: gray;
+        }
+        
+        #app div {
+            clear: both;
+            display: none;
+        }
+        
+        img {
+            width: 300px;
+            height: 300px;
+        }
+        
+        #app div.see {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='app'>
+        <ul>
+            <li :class='currentIndex==index?"bg":""' v-for='(item,index) in fruit' v-cloak v-on:click='change(index)'>{{item.fname}}</li>
+        </ul>
+        <div v-for='(item,index) in fruit' v-cloak :class='currentIndex==index?"see":""'>
+            <img :src='item.fphoto'>
+        </div>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                currentIndex: 0,
+                fruit: [{
+                    id: 1,
+                    fname: '苹果',
+                    fphoto: '../images/pingguo.jpg'
+                }, {
+                    id: 2,
+                    fname: '橘子',
+                    fphoto: '../images/juzi.jpg'
+                }, {
+                    id: 3,
+                    fname: '桃子',
+                    fphoto: '../images/taozi.jpg'
+                }]
+            },
+            methods: {
+                change: function(index) {
+                    this.currentIndex = index;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
